@@ -1,5 +1,4 @@
-#ifndef DEBUGUTIL_HPP_
-#define DEBUGUTIL_HPP_
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -9,6 +8,3 @@
     printf("Error: %s", msg);
     std::exit(1);
 }
-
-
-#endif  // DEBUGUTIL_HPP_
