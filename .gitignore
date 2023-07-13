@@ -26,6 +26,16 @@
 *.a
 *.lib
 
+*~
+*.o
+*-report
+*.so
+*.vcxproj
+*.vcxproj.*
+*.VC
+*.VC.*
+*.sln
+
 # Executables
 *.exe
 *.out
