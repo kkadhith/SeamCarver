@@ -1,5 +1,5 @@
 # SeamCarver
-Minimal latency Parallel Seam Carving from scratch, simplified.
+Minimal latency Seam Carving from scratch, simplified.
 
 
 
