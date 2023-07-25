@@ -15,7 +15,7 @@ namespace grp {
     class PixelTransformer {
         public:
             PixelTransformer();
-            //PixelTransformer(const PixelContainer &pc);
+            PixelTransformer(const PixelContainer &pc);
             void transform();
             bool removal(); 
         private:

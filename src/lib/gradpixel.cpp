@@ -1,7 +1,10 @@
 #include "gradpixel.h"
 
+using namespace grp;
 
-namespace grp {
-    PixelTransformer::PixelTransformer() {}
-//    PixelTransformer::PixelTransformer(const PixelContainer &pc) {}
+PixelTransformer::PixelTransformer() {}
+
+PixelTransformer::PixelTransformer(const PixelContainer &pc) {
+    this->pixels = pc;
 }
+
