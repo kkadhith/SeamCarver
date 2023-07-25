@@ -21,5 +21,7 @@ namespace grp {
         private:
             GradContainer grads;
             PixelContainer pixels;
+            size_t row;
+            size_t column;
     };
 }
