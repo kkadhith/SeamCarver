@@ -17,7 +17,9 @@ namespace grp {
             PixelTransformer();
             PixelTransformer(const PixelContainer &pc);
             void transform();
-            bool removal(); 
+            bool removal();
+            void ptg();
+            void ptp();
         private:
             GradContainer grads;
             PixelContainer pixels;

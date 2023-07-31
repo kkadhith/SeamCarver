@@ -6,7 +6,7 @@ using namespace grp;
 PixelTransformer::PixelTransformer() {}
 
 PixelTransformer::PixelTransformer(const PixelContainer &pc) {
-    this->pixels = pc;
+    pixels = pc;
     row = pc.size();
     column = pc[0].size();
     this->grads = std::vector<std::vector<float>>(row, std::vector<float>(column));
@@ -16,7 +16,6 @@ void PixelTransformer::transform() {
     for (size_t i = 1; i < row-1; i++) {
         for (size_t j = 1; j < column-1; j++) {
             // auto.red, auto.green, auto.blue
-            
             auto left = pixels[i][j-1];
             auto right = pixels[i][j+1];
             auto up = pixels[i-1][j];
@@ -33,4 +32,22 @@ void PixelTransformer::transform() {
         }
     }
     return;
+}
+
+void PixelTransformer::ptg() {
+    for (auto &i : grads) {
+        for (auto &j : i) {
+            std::cout << j << " ";
+        }
+        std::cout << '\n';
+    }
+}
+
+void PixelTransformer::ptp() {
+    for (auto &i : pixels) {
+        for (auto &j : i) {
+            std::cout << j.red << " ";
+        }
+        std::cout << '\n';
+    }
 }
