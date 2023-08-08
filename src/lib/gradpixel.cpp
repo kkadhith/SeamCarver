@@ -51,3 +51,11 @@ void PixelTransformer::ptp() {
         std::cout << '\n';
     }
 }
+
+void PixelTransformer::calculateSeams() {
+    for (size_t i = 1; i < row; i++) {
+        for (size_t j = 1; j < column; j++) {
+
+        }
+    }
+}
