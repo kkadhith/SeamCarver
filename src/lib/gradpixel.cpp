@@ -10,6 +10,7 @@ PixelTransformer::PixelTransformer(const PixelContainer &pc) {
     row = pc.size();
     column = pc[0].size();
     this->grads = std::vector<std::vector<float>>(row, std::vector<float>(column));
+    this->seams = std::vector<std::vector<float>>(row, std::vector<float>(column));
 }
 
 void PixelTransformer::transform() {
@@ -52,10 +53,32 @@ void PixelTransformer::ptp() {
     }
 }
 
-void PixelTransformer::calculateSeams() {
-    for (size_t i = 1; i < row; i++) {
-        for (size_t j = 1; j < column; j++) {
+void PixelTransformer::pts() {
+    for (auto &i : seams) {
+        for (auto &j : i) {
+            std::cout << j << " ";
+        }
+        std::cout << '\n';
+    }
+}
 
+void PixelTransformer::calculateSeams() {
+    for (size_t j = 0; j < column; j++) {
+        float sum = 0;
+        for (size_t i = 0; i < row; i++) {
+            sum += grads[i][j];
+            seams[i][j] = sum;
+        }
+    }
+}
+
+void PixelTransformer::removal() {
+    int minIndex = 1;
+    auto smallestSeamSum = seams[row-1][1];
+    for (size_t j = 2; j < column-1; j++) {
+        if (seams[row-1][j] < smallestSeamSum) {
+            minIndex = j;
+            smallestSeamSum = seams[row-1][j];
         }
     }
 }
