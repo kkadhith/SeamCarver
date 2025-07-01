@@ -1,6 +1,7 @@
 #include "gradpixel.h"
 
 #include <cmath>
+#include <cfloat>
 using namespace grp;
 
 PixelTransformer::PixelTransformer() {}
