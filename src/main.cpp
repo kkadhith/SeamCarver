@@ -22,12 +22,13 @@ int main(int argc, char* argv[]) {
 
     if(validBmp == true) {
         bmp = image.toPixelMatrix();
-        grp::PixelTransformer tm = grp::PixelTransformer(bmp); 
+        grp::PixelTransformer tm = grp::PixelTransformer(bmp);
         tm.transform();
-        tm.ptp();
-        tm.ptg();
+        tm.calculateSeams();
+        tm.removal();
+        bmp = tm.getPixelContainer();
         image.fromPixelMatrix(bmp);
-        // image.save("example1.bmp");
+        image.save("example1.bmp");
     }
 
     return 0;
