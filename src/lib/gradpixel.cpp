@@ -91,6 +91,58 @@ void PixelTransformer::removal() {
             smallestSeamSum = seams[row-1][j];
         }
     }
+    
+    // In progress: seam identification
+    // fix logic, visualize seam
+    // clean up code
+    for (size_t rowIterator = row-1; rowIterator >= 1; rowIterator--) {
+        pixels[rowIterator][minIndex].red = 255;
+        pixels[rowIterator][minIndex].green = 0;
+        pixels[rowIterator][minIndex].blue = 0;
+
+        if (minIndex == static_cast<size_t>(0)) {
+            auto above = seams[rowIterator-1][minIndex];
+            auto right = seams[rowIterator-1][minIndex+1];
+
+            if (right < above) {
+                smallestSeamSum = right;
+                minIndex = minIndex + 1;
+            }
+            else {
+                smallestSeamSum = above;
+            }
+
+        }
+        else if (minIndex == static_cast<size_t>(column - 1)) {
+            auto left = seams[rowIterator-1][minIndex-1];
+            auto above = seams[rowIterator-1][minIndex];
+
+            if (left < above) {
+                smallestSeamSum = left;
+                minIndex = minIndex - 1;
+            }
+            else {
+                smallestSeamSum = above;
+            }
+        }
+        else {
+            auto left = seams[rowIterator-1][minIndex-1];
+            auto above = seams[rowIterator-1][minIndex];
+            auto right = seams[rowIterator-1][minIndex+1];
+
+            if (left <= above && left <= right) {
+                minIndex = minIndex - 1;
+                smallestSeamSum = left;
+            }
+            else if (right <= above && right <= left) {
+                minIndex = minIndex + 1;
+                smallestSeamSum = right;
+            }
+            else {
+                smallestSeamSum = above;
+            }
+        }
+    }
 }
 
 const PixelContainer& PixelTransformer::getPixelContainer() {
