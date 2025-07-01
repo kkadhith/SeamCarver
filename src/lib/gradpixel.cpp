@@ -82,3 +82,7 @@ void PixelTransformer::removal() {
         }
     }
 }
+
+const PixelContainer& PixelTransformer::getPixelContainer() {
+    return pixels;
+}

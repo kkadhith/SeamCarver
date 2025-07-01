@@ -23,6 +23,9 @@ namespace grp {
             void ptg();
             void ptp();
             void pts();
+            void changeLines();
+
+            const PixelContainer& getPixelContainer();
         private:
             GradContainer grads;
             PixelContainer pixels;
