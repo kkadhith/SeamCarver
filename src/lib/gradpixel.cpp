@@ -63,9 +63,9 @@ void PixelTransformer::pts() {
 }
 
 void PixelTransformer::calculateSeams() {
-    for (size_t j = 0; j < column; j++) {
+    for (size_t j = 1; j < column-1; j++) {
         float sum = 0;
-        for (size_t i = 0; i < row; i++) {
+        for (size_t i = 1; i < row-1; i++) {
             sum += grads[i][j];
             seams[i][j] = sum;
         }
