@@ -85,11 +85,11 @@ void PixelTransformer::calculateSeams() {
 
 void PixelTransformer::removal() {
     size_t minIndex = 1;
-    auto smallestSeamSum = seams[row-1][1];
-    for (size_t j = 2; j < column-1; j++) {
-        if (seams[row-1][j] < smallestSeamSum) {
+    auto smallestSeamSum = FLT_MAX;
+    for (size_t j = 1; j < column-1; j++) {
+        if (seams[row-2][j] < smallestSeamSum) {
             minIndex = j;
-            smallestSeamSum = seams[row-1][j];
+            smallestSeamSum = seams[row-2][j];
         }
     }
     
