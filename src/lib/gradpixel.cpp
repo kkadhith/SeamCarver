@@ -96,12 +96,12 @@ void PixelTransformer::removal() {
     // In progress: seam identification
     // fix logic, visualize seam
     // clean up code
-    for (size_t rowIterator = row-1; rowIterator >= 1; rowIterator--) {
+    for (size_t rowIterator = row-2; rowIterator >= 1; rowIterator--) {
         pixels[rowIterator][minIndex].red = 255;
         pixels[rowIterator][minIndex].green = 0;
         pixels[rowIterator][minIndex].blue = 0;
 
-        if (minIndex == static_cast<size_t>(0)) {
+        if (minIndex == static_cast<size_t>(1)) {
             auto above = seams[rowIterator-1][minIndex];
             auto right = seams[rowIterator-1][minIndex+1];
 
@@ -114,7 +114,7 @@ void PixelTransformer::removal() {
             }
 
         }
-        else if (minIndex == static_cast<size_t>(column - 1)) {
+        else if (minIndex == static_cast<size_t>(column - 2)) {
             auto left = seams[rowIterator-1][minIndex-1];
             auto above = seams[rowIterator-1][minIndex];
 
