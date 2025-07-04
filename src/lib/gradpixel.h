@@ -20,7 +20,7 @@ namespace grp {
             PixelTransformer(const PixelContainer &pc);
             void calculateGradients();
             void calculateSeams();
-            void removal();
+            void removeSingleSeam();
             void ptg();
             void viewPixelOutput();
             void pts();

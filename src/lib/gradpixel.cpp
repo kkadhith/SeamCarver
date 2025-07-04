@@ -93,28 +93,24 @@ void PixelTransformer::calculateSeams() {
     }
 }
 
-void PixelTransformer::removal() {
-    size_t minIndex = 1;
+void PixelTransformer::removeSingleSeam() {
+    size_t minIndex = 0;
     auto smallestSeamSum = FLT_MAX;
-    for (size_t j = 1; j < column-1; j++) {
-        if (seams[row-2][j] < smallestSeamSum) {
+    for (size_t j = 0; j < column; j++) {
+        if (seams[row-1][j] < smallestSeamSum) {
             minIndex = j;
-            smallestSeamSum = seams[row-2][j];
+            smallestSeamSum = seams[row-1][j];
         }
     }
-    seamCoords[row-1] = minIndex;
     
-    // In progress: seam identification
-    // fix logic, visualize seam
-    // clean up code
-    for (size_t rowIterator = row-2; rowIterator >= 1; rowIterator--) {
+    for (size_t rowIterator = row-1; rowIterator >= 1; rowIterator--) {
         pixels[rowIterator][minIndex].red = 255;
         pixels[rowIterator][minIndex].green = 0;
         pixels[rowIterator][minIndex].blue = 0;
 
         seamCoords[rowIterator] = minIndex;
 
-        if (minIndex == static_cast<size_t>(1)) {
+        if (minIndex == static_cast<size_t>(0)) {
             auto above = seams[rowIterator-1][minIndex];
             auto right = seams[rowIterator-1][minIndex+1];
 
@@ -127,7 +123,7 @@ void PixelTransformer::removal() {
             }
 
         }
-        else if (minIndex == static_cast<size_t>(column - 2)) {
+        else if (minIndex == static_cast<size_t>(column - 1)) {
             auto left = seams[rowIterator-1][minIndex-1];
             auto above = seams[rowIterator-1][minIndex];
 
