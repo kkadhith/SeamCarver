@@ -82,6 +82,24 @@ void PixelTransformer::calculateSeams() {
     }
 }
 
+void PixelTransformer::deleteSeam() {
+    PixelContainer newContainer(row);
+
+    for (size_t i = 0; i < row; i++) {
+        for (size_t j = 0; j < column; j++) {
+            if (seamCoords[i] == j) {
+                continue;
+            }
+            newContainer[i].push_back(pixels[i][j]);
+        }
+    }
+
+    pixels = newContainer;
+    column--;
+    grads = std::vector<std::vector<float>>(row, std::vector<float>(column));
+    seams = std::vector<std::vector<float>>(row, std::vector<float>(column));
+}
+
 void PixelTransformer::removeSingleSeam() {
     size_t minIndex = 0;
     auto smallestSeamSum = FLT_MAX;

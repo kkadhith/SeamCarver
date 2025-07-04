@@ -25,7 +25,7 @@ namespace grp {
             void viewPixelOutput();
             void pts();
             void changeLines();
-            void remove();
+            void deleteSeam();
 
             const PixelContainer& getPixelContainer();
         private:
