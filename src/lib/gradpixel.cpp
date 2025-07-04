@@ -101,6 +101,7 @@ void PixelTransformer::deleteSeam() {
 }
 
 void PixelTransformer::removeSingleSeam() {
+    seamCoords.clear();
     size_t minIndex = 0;
     auto smallestSeamSum = FLT_MAX;
     for (size_t j = 0; j < column; j++) {
