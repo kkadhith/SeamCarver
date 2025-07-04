@@ -33,17 +33,6 @@ void PixelTransformer::calculateGradients() {
             grads[i][j] = grad;
         }
     }
-
-    for (size_t i = 0; i < row; i++) {
-        grads[i][0] = FLT_MAX;
-        grads[i][column-1] = FLT_MAX;
-    }
-
-    for (size_t i = 0; i < column; i++) {
-        grads[0][i] = FLT_MAX;
-        grads[row-1][i] = FLT_MAX;
-    }
-    return;
 }
 
 void PixelTransformer::ptg() {
