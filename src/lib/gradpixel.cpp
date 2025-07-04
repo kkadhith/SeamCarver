@@ -55,10 +55,10 @@ void PixelTransformer::ptg() {
     }
 }
 
-void PixelTransformer::ptp() {
+void PixelTransformer::viewPixelOutput() {
     for (auto &i : pixels) {
         for (auto &j : i) {
-            std::cout << j.red << " ";
+            std::cout << "(" << j.red << ", " << j.green << ", " << j.blue << ")  ";
         }
         std::cout << '\n';
     }

@@ -22,7 +22,7 @@ namespace grp {
             void calculateSeams();
             void removal();
             void ptg();
-            void ptp();
+            void viewPixelOutput();
             void pts();
             void changeLines();
             void remove();
