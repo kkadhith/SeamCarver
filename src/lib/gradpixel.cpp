@@ -74,11 +74,21 @@ void PixelTransformer::pts() {
 }
 
 void PixelTransformer::calculateSeams() {
-    for (size_t j = 1; j < column-1; j++) {
-        float sum = 0;
-        for (size_t i = 1; i < row-1; i++) {
-            sum += grads[i][j];
-            seams[i][j] = sum;
+    for (size_t i = 0; i < column; i++) {
+        seams[0][i] = grads[0][i];
+    }
+
+    for (size_t i = 1; i < row; i++) {
+        for (size_t j = 0; j < column; j++) {
+            if (j == 0) {
+                seams[i][j] = grads[i][j] + std::min(seams[i-1][j+1], seams[i-1][j]);
+            }
+            else if (j == column - 1) {
+                seams[i][j] = grads[i][j] + std::min(seams[i-1][j-1], seams[i-1][j]);
+            }
+            else {
+                seams[i][j] = grads[i][j] + std::min(seams[i-1][j-1], std::min(seams[i-1][j], seams[i-1][j+1]));
+            }
         }
     }
 }
