@@ -18,7 +18,7 @@ namespace grp {
         public:
             PixelTransformer();
             PixelTransformer(const PixelContainer &pc);
-            void transform();
+            void calculateGradients();
             void calculateSeams();
             void removal();
             void ptg();
