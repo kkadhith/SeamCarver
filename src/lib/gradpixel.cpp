@@ -15,6 +15,15 @@ PixelTransformer::PixelTransformer(const PixelContainer &pc) {
 }
 
 void PixelTransformer::calculateGradients() {
+
+    auto square = [](int a, int b) -> int {
+        return (a-b) * (a-b);
+    };
+
+    auto calculateOrientation = [square](Pixel p1, Pixel p2) {
+        return square(p1.red, p2.red) + square(p1.green, p2.green) + square(p1.blue, p2.blue); 
+    };
+
     for (size_t i = 0; i < row; i++) {
         for (size_t j = 0; j < column; j++) {
             // auto.red, auto.green, auto.blue
@@ -23,9 +32,6 @@ void PixelTransformer::calculateGradients() {
             auto up = (i == 0) ? pixels[i][j] : pixels[i-1][j];
             auto down = (i == row -1) ? pixels[i][j] : pixels[i+1][j];
 
-            auto calculateOrientation = [](Pixel p1, Pixel p2) {
-                return std::pow((p1.red - p2.red), 2) + std::pow((p1.green - p2.green), 2) + std::pow((p1.blue - p2.blue), 2); 
-            };
             int fx = calculateOrientation(right, left);
             int fy = calculateOrientation(down, up);
             float grad = std::sqrt(fx + fy);
