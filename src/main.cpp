@@ -15,20 +15,27 @@ int main(int argc, char* argv[]) {
 
     std::string filename = argv[1];
     Bitmap image;
-    std::vector<std::vector<Pixel>> bmp;
+    std::vector<std::vector<Pixel>> originalImage;
     image.open(filename);
 
     bool validBmp = image.isImage();
 
     if(validBmp == true) {
-        bmp = image.toPixelMatrix();
-        grp::PixelTransformer tm = grp::PixelTransformer(bmp);
-        tm.transform();
-        tm.calculateSeams();
-        tm.removal();
-        bmp = tm.getPixelContainer();
-        image.fromPixelMatrix(bmp);
-        image.save("example1.bmp");
+        originalImage = image.toPixelMatrix();
+        grp::PixelTransformer tm = grp::PixelTransformer(originalImage);
+
+        // maybe make this part of argv
+        int count = 400;
+        for (int i = 0; i < count; i++) {
+            tm.calculateGradients();
+            tm.calculateSeams();
+            tm.removeSingleSeam();
+            tm.deleteSeam();
+        }
+
+        originalImage = tm.getPixelContainer();
+        image.fromPixelMatrix(originalImage);
+        image.save("carvedImage.bmp");
     }
 
     return 0;
