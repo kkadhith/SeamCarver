@@ -83,19 +83,16 @@ void PixelTransformer::calculateSeams() {
 }
 
 void PixelTransformer::deleteSeam() {
-    PixelContainer newContainer(row);
-
     for (size_t i = 0; i < row; i++) {
-        for (size_t j = 0; j < column; j++) {
-            if (seamCoords[i] == j) {
-                continue;
-            }
-            newContainer[i].push_back(pixels[i][j]);
+        auto removeIdx = seamCoords[i];
+
+        for (size_t j = removeIdx; j < column-1; j++) {
+            pixels[i][j] = pixels[i][j+1];
         }
+        pixels[i].pop_back();
     }
 
-    pixels = newContainer;
-    column--;
+    column = column - 1;
     grads = std::vector<std::vector<float>>(row, std::vector<float>(column));
     seams = std::vector<std::vector<float>>(row, std::vector<float>(column));
 }
