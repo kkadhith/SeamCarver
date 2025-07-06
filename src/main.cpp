@@ -5,15 +5,17 @@
 #include "lib/debugutil.hpp"
 #include "lib/bitmap.h"
 #include "lib/gradpixel.h"
+#include "lib/timekeeper.h"
 
 
 int main(int argc, char* argv[]) {
     
-    if (argc < 2) {
-        signal_error("Need at least one image to carve.\n");
+    if (argc < 3) {
+        signal_error("Specify the image and number of seams to be removed.\n");
     }
 
     std::string filename = argv[1];
+    int numberOfSeams = atoi(argv[2]);
     Bitmap image;
     std::vector<std::vector<Pixel>> originalImage;
     image.open(filename);
@@ -24,14 +26,16 @@ int main(int argc, char* argv[]) {
         originalImage = image.toPixelMatrix();
         grp::PixelTransformer tm = grp::PixelTransformer(originalImage);
 
-        // maybe make this part of argv
-        int count = 400;
-        for (int i = 0; i < count; i++) {
+        timer t;
+        for (int i = 0; i < numberOfSeams; i++) {
             tm.calculateGradients();
             tm.calculateSeams();
             tm.removeSingleSeam();
             tm.deleteSeam();
         }
+        auto res = t.stop();
+
+        std::cout << res << std::endl;
 
         originalImage = tm.getPixelContainer();
         image.fromPixelMatrix(originalImage);
