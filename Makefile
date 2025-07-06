@@ -4,7 +4,7 @@ else
 CC = g++
 endif
 
-CPPFLAGS = -std=c++17 -Wall -Werror
+CPPFLAGS = -std=c++17 -Werror -O3
 SRC = src
 LIB = lib
 
