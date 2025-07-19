@@ -11,7 +11,7 @@
 int main(int argc, char* argv[]) {
     
     if (argc < 3) {
-        signal_error("Specify the image and number of seams to be removed.\n");
+        signal_error("Specify image and number of seams. Usage: ./compress <image> <seams>\n");
     }
 
     std::string filename = argv[1];
