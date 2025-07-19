@@ -68,6 +68,10 @@ void PixelTransformer::pts() {
     }
 }
 
+size_t PixelTransformer::getColumns() {
+    return column;
+}
+
 void PixelTransformer::calculateSeams() {
     for (size_t i = 0; i < column; i++) {
         seams[0][i] = grads[0][i];

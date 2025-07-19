@@ -26,6 +26,10 @@ int main(int argc, char* argv[]) {
         originalImage = image.toPixelMatrix();
         grp::PixelTransformer tm = grp::PixelTransformer(originalImage);
 
+        if (tm.getColumns() < numberOfSeams) {
+            signal_error("The number of seams to be removed is higher than the total seams in the image. Try a smaller number.\n");
+        }
+
         timer t;
         for (int i = 0; i < numberOfSeams; i++) {
             tm.calculateGradients();

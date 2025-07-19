@@ -27,6 +27,8 @@ namespace grp {
             void changeLines();
             void deleteSeam();
 
+            size_t getColumns();
+
             const PixelContainer& getPixelContainer();
         private:
             GradContainer grads;
