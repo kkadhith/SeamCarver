@@ -5,6 +5,8 @@
 
 #include <vector>
 
+typedef std::vector<std::vector<Pixel>> PixelMatrix;
+
 // TODO - add namespace later
 
 class GPUSeamCarver {
@@ -25,6 +27,8 @@ class GPUSeamCarver {
         GPUSeamCarver(const std::vector<std::vector<Pixel>> &pixelMatrix);
         ~GPUSeamCarver();
 
+        void debugGradientMatrix();
+        void debugSeamMatrix();
         void calculateGradients();
         void calculateSeams();
         void determineSeamToBeRemoved();
