@@ -9,7 +9,11 @@ __global__ void calculateGradientsKernel(GPUPixel *pixels, float *gradients, int
     int j = blockDim.x * blockIdx.x + threadIdx.x;
     int i = blockDim.y * blockIdx.y + threadIdx.y;
     
-    int trueIndex = y * width + x;
+    int trueIndex = i * width + j;
+
+    if (j >= width || i >= height) {
+        return;
+    }
 
     GPUPixel currentPixel = pixels[trueIndex];
 
